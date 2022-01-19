@@ -56,6 +56,8 @@ class Account(AbstractBaseUser):
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = ['username','first_name','last_name']
 
+    # readonly_fields = ('date_joined')
+
     objects = MyAccountManager()
 
     def __str__(self):
