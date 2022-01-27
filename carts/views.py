@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from carts.models import Cart, CartItem
 
@@ -33,7 +34,8 @@ def add_cart(request,product_id):
             cart = cart,
         )
         cart_item.save()
-    
+    return HttpResponse(cart_item.quantity)
+    exit()
     return redirect('cart')
 
 
