@@ -37,8 +37,5 @@ def add_cart(request,product_id):
     return redirect('cart')
 
 
-
-    
-
 def cart(request):
     return render(request,'store/cart.html')
