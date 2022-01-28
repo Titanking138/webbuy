@@ -2,8 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import context
 from carts.models import Cart, CartItem
-
+from django.core.exceptions import ObjectDoesNotExist
 from store.models import Product
+
 
 # Create your views here.
 def _cart_id(request):
@@ -46,8 +47,8 @@ def cart(request,total=0,quantity = 0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price*cart_item.product.quantity)
             quantity += cart_item.quantity
-    except ObjectNotExist:
-        pass
+    except ObjectDoesNotExist:
+        pass 
 
     context= {
         'total' : total,
