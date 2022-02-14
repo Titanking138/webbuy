@@ -144,7 +144,7 @@ def resetpassword_validate(request, uidb64, token):
 
 def resetPassword(request):
     if request.method == 'POST':
-        password = request.POST['password']
+        password = request.POST['Password']
         confirm_password = request.POST['confirm_password']
 
         if password == confirm_password:
@@ -158,5 +158,5 @@ def resetPassword(request):
             messages.error(request,'Password do not match!')
             return redirect('resetPassword')
 
-    else:
-        return render(request,'account/resetPassword.html')
+   
+    return render(request,'accounts/resetPassword.html')
