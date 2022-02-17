@@ -115,9 +115,7 @@
 
 					</div> <!-- card-body.// -->
 				</div> <!-- card.// -->
-				<div class="alert alert-danger" role="alert">
-				  <b>Please Note: </b>This is a demo website. Do not try to make real payments.
-				</div>
+			
 			</aside> <!-- col.// -->
 
 
@@ -128,8 +126,7 @@
 	</div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-{% endblock %}
-<!-- <script>
+ <script>
 
 	function getCookie(name) {
     let cookieValue = null;
@@ -152,7 +149,7 @@
 	var csrftoken = getCookie('csrftoken');
 	var orderID = "{{order.order_number}}"
 	var payment_method = 'PayPal'
-	var redirect_url = "{% url 'order_complete' %}"
+
 	// Render the PayPal button into #paypal-button-container
 	paypal.Buttons({
 
@@ -204,5 +201,6 @@
 
 
 	}).render('#paypal-button-container');
-</script> -->
+</script>
 
+{% endblock %}
