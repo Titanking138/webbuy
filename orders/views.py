@@ -6,6 +6,9 @@ from .forms import OrderForm
 import datetime
 from .models import Order, Payment, OrderProduct
 import json
+from store.models import Product
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -27,7 +30,7 @@ def payments(request):
     order.is_ordered = True
     order.save()
 
-    return render(request, 'orders/payments.html')
+    
     # Move the cart items to Order Product table
     cart_items = CartItem.objects.filter(user=request.user)
 
@@ -134,3 +137,31 @@ def place_order(request, total=0, quantity=0,):
         
     else:
         return redirect('checkout')
+
+def order_complete(request):
+    order_number = request.GET.get('order_number')
+    transID = request.GET.get('payment_id')
+
+    try:
+        order = Order.objects.get(order_number=order_number, is_ordered=True)
+        ordered_products = OrderProduct.objects.filter(order_id=order.id)
+
+        subtotal = 0
+        for i in ordered_products:
+            subtotal += i.product_price * i.quantity
+
+        payment = Payment.objects.get(payment_id=transID)
+
+        context = {
+            'order': order,
+            'ordered_products': ordered_products,
+            'order_number': order.order_number,
+            'transID': payment.payment_id,
+            'payment': payment,
+            'subtotal': subtotal,
+        }
+        return render(request, 'orders/order_complete.html', context)
+        
+    except (Payment.DoesNotExist, Order.DoesNotExist):
+        return redirect('home')
+
