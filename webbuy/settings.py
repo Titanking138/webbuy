@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_extensions',
     'category',
     'accounts',
     'store',
@@ -151,7 +150,3 @@ EMAIL_HOST_USER ='webbuy6974@gmail.com'
 EMAIL_HOST_PASSWORD = 'Kevla@123'
 EMAIL_USE_TLS = True
 
-GRAPH_MODELS = {
-    'all_applications': True,
-    'group_models': True,
-}
